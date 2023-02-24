@@ -1,5 +1,8 @@
 # Kubeflow 1.6 on DGX enabled instances
-This document contains steps to deploy charmed kubeflow on DGX enabled GPU instances with kuberntes 1.22 (currently highest version charmed kubeflow supports).
+This document contains the steps used to deploy charmed kubeflow on DGX enabled GPU instances.  In general, this can be summed up by:
+
+* [Installing MicroK8s on NVIDIA DGX](https://microk8s.io/docs/nvidia-dgx)
+* [Installing Charmed Kubeflow](https://charmed-kubeflow.io/docs/install)
 
 ## 1. Ubuntu setup
 This document was tested on Ubuntu 20.04 vanilla
@@ -48,8 +51,9 @@ $ sudo reboot
 ## 3. Kubernetes installation (Microk8s)
 Install microk8s and enable required addons
 ```{bash}
-$ sudo snap install microk8s --classic --channel 1.22
- 
+$ sudo snap install microk8s --classic --channel 1.24
+
+# dns, storage, rbac, metallb needed for Kubeflow
 $ sudo microk8s enable dns:10.229.32.21 storage ingress registry rbac helm3 metallb:10.64.140.43-10.64.140.49,192.168.0.105-192.168.0.111
  
 $ sudo usermod -a -G microk8s ubuntu
@@ -84,7 +88,7 @@ Check gpu count for k8s
 $ kubectl get nodes --show-labels | grep gpu.count
 ```
 
-Configure MIG devices
+(optional) Configure MIG devices
 
 ```{bash}
 $ kubectl label nodes blanka nvidia.com/mig.config=all-1g.5gb --overwrite
