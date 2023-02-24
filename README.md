@@ -8,11 +8,9 @@ This document contains several demo workloads that were executed using [Charmed 
 With a log of the setup actions taken here included in the `kubernetes-setup.md` file. 
 
 Examples here are:
-* multi-gpu-in-notebook: example of how you can train Tensorflow models in a Jupyter Notebook.  
-* distributed_local
+* multi-gpu-in-notebook: training Tensorflow models with GPUs in a Kubeflow Notebook
+* multi-gpu-in-pipeline: (under construction) training Tensorflow models with GPUs in a Kubeflow Pipeline
+* multi-node-gpu-simulated: a simulated example of multi-node training in Tensorflow, but using just a single node
+* multi-node-gpu-tfjob: multi-node training in Tensorflow using the Kubeflow Training Operator's TFJob
 
-We provide also examples on how to use Kubeflow instance with multiple GPUs. In the file `gpu-pipeline.ipynb` you can find basic example of [Kubeflow pipeline](https://www.kubeflow.org/docs/components/pipelines/v1/introduction/), where we demonstrate multi GPU training on Tensorflow model. This example provides instrctions on how to deploy the trained model with [MlFlow](https://mlflow.org/) and [Seldon core](https://www.seldon.io/solutions/open-source-projects/core).
-
-In the file `gpu-notebook.ipynb` you can find example [Jupyter notebook](https://jupyter.org/) with the same classiffier as in case of pipeline. Notebook also uses multi GPU setup.
-
-**Author:** Michal Hucko (michal.hucko@canonical.com)
+**Author:** Michal Hucko (michal.hucko@canonical.com) and Andrew Scribner (andrew.scribner@canonical.com)
